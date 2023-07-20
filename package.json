@@ -1,0 +1,17 @@
+{
+  "name": "orama-ast",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@orama/orama": "^1.1.0",
+    "acorn": "^8.9.0"
+  }
+}
