@@ -3,7 +3,6 @@ import { parse } from "acorn";
 import { readFileSync } from "node:fs";
 import { schema } from "./const.js";
 import { traverse } from "./traverse.js";
-import { writeFileSync } from "node:fs";
 
 const eventjs = readFileSync("public/index.js", "utf-8");
 const ast = parse(eventjs, { ecmaVersion: "latest", locations: true });
@@ -90,7 +89,6 @@ const { hits: meetConst } = await search(db, {
   },
 });
 
-console.log("searchResult", searchResult);
 console.log("classDeclaration", classDeclaration);
 console.log("classCalled", classCalled);
 console.log("propertyDefinition", propertyDefinition);
