@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { fieldsToFlatten, fieldsToPick } from "./const.js";
 
-export function traverse(node, results, parentId, parentType, field) {
+export function traverse(node, results, parentId, parentType, field, kind) {
   const id = randomUUID();
 
   const accumulator = {
@@ -20,15 +20,21 @@ export function traverse(node, results, parentId, parentType, field) {
 
   const type = res.type;
 
+  if (type === "VariableDeclaration") {
+    kind = res.kind;
+  } else if (kind) {
+    res.kind = kind;
+  }
+
   for (const field of fieldsToFlatten) {
     const child = node[field];
     if (child) {
       if (Array.isArray(child)) {
         for (const el of child) {
-          traverse(el, results, id, type, field);
+          traverse(el, results, id, type, field, kind);
         }
       } else {
-        traverse(child, results, id, type, field);
+        traverse(child, results, id, type, field, kind);
       }
     }
   }

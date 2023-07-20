@@ -9,7 +9,10 @@ class SayHello {
 new SayHello("ciao");
 
 function sayHello(name) {
+  const meet = 20;
   console.log(`${greet} ${name}`);
 }
+
+let meet = "hi";
 
 const name = sayHello("Marco");

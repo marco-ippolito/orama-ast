@@ -9,7 +9,6 @@ const eventjs = readFileSync("public/index.js", "utf-8");
 const ast = parse(eventjs, { ecmaVersion: "latest", locations: true });
 const flat = [];
 
-writeFileSync("pippo.json", JSON.stringify(ast, null, 2));
 traverse(ast, flat);
 
 const db = await create({
@@ -73,12 +72,29 @@ const {
   },
 });
 
-const { hits: searchResult } = await search(db, {
-  term: "sayHello",
+// search a variable that is const
+const { hits: meetLet } = await search(db, {
+  term: "meet",
+  where: {
+    parentType: "VariableDeclarator",
+    kind: "let",
+  },
 });
+
+// filter variable that is let
+const { hits: meetConst } = await search(db, {
+  term: "meet",
+  where: {
+    parentType: "VariableDeclarator",
+    kind: "const",
+  },
+});
+
 console.log("searchResult", searchResult);
 console.log("classDeclaration", classDeclaration);
 console.log("classCalled", classCalled);
 console.log("propertyDefinition", propertyDefinition);
 console.log("functionDeclaration", functionDeclaration);
 console.log("functionCalled", functionCalled);
+console.log("meetLet", meetLet);
+console.log("meetConst", meetConst);
