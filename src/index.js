@@ -4,8 +4,8 @@ import { readFileSync } from "node:fs";
 import { schema } from "./const.js";
 import { traverse } from "./traverse.js";
 
-const eventjs = readFileSync("public/index.js", "utf-8");
-const ast = parse(eventjs, { ecmaVersion: "latest", locations: true });
+const file = readFileSync("public/index.js", "utf-8");
+const ast = parse(file, { ecmaVersion: "latest", locations: true });
 const flat = [];
 
 traverse(ast, flat);
@@ -72,8 +72,8 @@ const {
 });
 
 // search a variable that is const
-const { hits: meetLet } = await search(db, {
-  term: "meet",
+const { hits: greetLet } = await search(db, {
+  term: "greet",
   where: {
     parentType: "VariableDeclarator",
     kind: "let",
@@ -81,8 +81,8 @@ const { hits: meetLet } = await search(db, {
 });
 
 // filter variable that is let
-const { hits: meetConst } = await search(db, {
-  term: "meet",
+const { hits: greetConst } = await search(db, {
+  term: "greet",
   where: {
     parentType: "VariableDeclarator",
     kind: "const",
@@ -94,5 +94,5 @@ console.log("classCalled", classCalled);
 console.log("propertyDefinition", propertyDefinition);
 console.log("functionDeclaration", functionDeclaration);
 console.log("functionCalled", functionCalled);
-console.log("meetLet", meetLet);
-console.log("meetConst", meetConst);
+console.log("greetLet", greetLet);
+console.log("greetConst", greetConst);

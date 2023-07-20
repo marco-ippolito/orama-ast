@@ -1,4 +1,4 @@
-export const fieldsToFlatten = [
+export const fieldsToTraverse = [
   "body",
   "declarations",
   "arguments",

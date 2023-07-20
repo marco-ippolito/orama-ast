@@ -1,18 +1,17 @@
 class SayHello {
-  sayHello = "bonjour";
+  sayHello = "ciao";
   constructor(sayHello) {
     this.sayHello = sayHello;
     console.log(this.sayHello);
   }
 }
-
 new SayHello("ciao");
 
 function sayHello(name) {
-  const meet = 20;
+  const greet = "ciao";
   console.log(`${greet} ${name}`);
 }
 
-let meet = "hi";
+let greet = "ciao";
 
 const name = sayHello("Marco");

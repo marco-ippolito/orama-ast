@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { fieldsToFlatten, fieldsToPick } from "./const.js";
+import { fieldsToTraverse, fieldsToPick } from "./const.js";
 
 export function traverse(node, results, parentId, parentType, field, kind) {
   const id = randomUUID();
@@ -26,7 +26,7 @@ export function traverse(node, results, parentId, parentType, field, kind) {
     res.kind = kind;
   }
 
-  for (const field of fieldsToFlatten) {
+  for (const field of fieldsToTraverse) {
     const child = node[field];
     if (child) {
       if (Array.isArray(child)) {
